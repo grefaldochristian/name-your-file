@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#145c4d">
+  <meta name="description" content="Barangay Community Help Hub — send requests, track progress, and view community announcements.">
+  <title>Barangay Community Help Hub</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+  <style>
+    /* Background image setup for the hero section */
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(20, 92, 77, 0.85), rgba(20, 92, 77, 0.85)), url('./background.jpg') center/cover no-repeat;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="topbar">
+    <a class="brand" href="#home" data-view="home">
+      <!-- Keep your existing logo image unchanged -->
+      <img src="./barangay-hall-logo.png" alt="Barangay Help Hub logo" class="logo">
+      <span class="brand-copy">
+        <strong>Barangay Help Hub</strong>
+        <small>Community • Service • Support</small>
+      </span>
+    </a>
+
+    <button id="menu-toggle" class="icon-button menu-toggle"
+      type="button" aria-expanded="false" aria-controls="nav-menu"
+      aria-label="Open navigation menu">☰</button>
+
+    <nav id="nav-menu" class="nav-menu" aria-label="Main navigation">
+      <button type="button" class="nav-btn active" data-view="home">Home</button>
+      <button type="button" class="nav-btn" data-view="services">Services</button>
+      <button type="button" class="nav-btn" data-view="announcements">Announcements</button>
+      <button type="button" class="nav-btn" data-view="contacts">Contacts</button>
+      <button type="button" class="nav-btn" data-view="resources">Resources</button>
+      <button type="button" class="nav-btn" data-view="track">Track Request</button>
+      <button type="button" class="nav-btn nav-cta" data-view="help-request">Send Request</button>
+      <button type="button" class="nav-btn" data-view="auth">Demo Login</button>
+      <button type="button" class="nav-btn nav-admin" data-view="admin">Admin</button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section id="view-home" class="page-view">
+      <div class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">FOR ALL RESIDENTS</span>
+          <h1>Report a problem.<br><span>Track it. Get help.</span></h1>
+          <p>One simple place for barangay service requests, community updates, and important contact information.</p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-view="help-request">
+              <span aria-hidden="true">＋</span> Send a help request
+            </button>
+            <button class="btn btn-light" type="button" data-view="track">
+              <span aria-hidden="true">⌕</span> Track my request
+            </button>
+          </div>
+
+          <div class="hero-note">
+            <span class="status-dot" aria-hidden="true"></span>
+            Simple, accessible, browser-based demo
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-circle circle-one"></div>
+          <div class="art-circle circle-two"></div>
+          <div class="art-card">
+            <span class="art-icon">✓</span>
+            <div><strong>Community first</strong><small>Every concern matters.</small></div>
+          </div>
+          <div class="art-card art-card-bottom">
+            <span class="art-icon art-icon-gold">⌂</span>
+            <div><strong>Barangay services</strong><small>Here to help residents.</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">GET STARTED</span>
+            <h2>How can we help you?</h2>
+          </div>
+          <p>Choose what you need. Each step is designed to be simple.</p>
+        </div>
+
+        <div class="card-grid three">
+          <article class="feature-card">
+            <span class="feature-icon teal-icon" aria-hidden="true">＋</span>
+            <h3>Report a concern</h3>
+            <p>Send a request about garbage collection, flooding, streetlights, health services, and more.</p>
+            <button class="text-link" type="button" data-view="help-request">Create a request →</button>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon blue-icon" aria-hidden="true">⌕</span>
+            <h3>Track progress</h3>
+            <p>Enter your reference number to see the latest status of your submitted request.</p>
+            <button class="text-link" type="button" data-view="track">Track a request →</button>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon gold-icon" aria-hidden="true">▤</span>
+            <h3>Stay informed</h3>
+            <p>Read community announcements and find useful barangay contact information.</p>
+            <button class="text-link" type="button" data-view="announcements">View updates →</button>
+          </article>
+        </div>
+
+        <div class="notice notice-info">
+          <strong>Demo information</strong>
+          <p>This website stores demonstration data in your browser only. It does not send reports to a real barangay office.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-help-request" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">RESIDENT SERVICES</span>
+          <h1>Send a help request</h1>
+          <p>Describe your concern so it can be recorded and tracked.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">＋</span>
+      </div>
+
+      <div class="container narrow section">
+        <div class="step-row" aria-label="Request steps">
+          <div class="step active"><span>1</span><div><strong>Describe</strong><small>Your concern</small></div></div>
+          <div class="step"><span>2</span><div><strong>Submit</strong><small>Save your request</small></div></div>
+          <div class="step"><span>3</span><div><strong>Track</strong><small>Check progress</small></div></div>
+        </div>
+
+        <form id="help-request-form" class="panel form-panel">
+          <div class="panel-heading">
+            <h2>Request details</h2>
+            <p>Fields marked with * are required.</p>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="req-name">Your name *</label>
+              <input id="req-name" name="name" type="text" maxlength="100"
+                autocomplete="name" required placeholder="Enter your name">
+            </div>
+            <div class="field">
+              <label for="req-contact">Contact number or email (optional)</label>
+              <input id="req-contact" name="contact" type="text" maxlength="120"
+                autocomplete="tel" placeholder="How may we contact you?">
+            </div>
+            <div class="field">
+              <label for="req-category">Request category *</label>
+              <select id="req-category" name="category" required>
+                <option value="">Choose a category</option>
+                <option>Garbage Collection</option>
+                <option>Flooding / Drainage</option>
+                <option>Broken Streetlight</option>
+                <option>Health Services</option>
+                <option>Road / Public Facility</option>
+                <option>Peace and Safety</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="req-purok">Purok / area *</label>
+              <input id="req-purok" name="purok" type="text" maxlength="100"
+                required placeholder="e.g. Purok 3">
+            </div>
+            <div class="field">
+              <label for="req-urgency">Urgency *</label>
+              <select id="req-urgency" name="urgency" required>
+                <option value="">Select urgency</option>
+                <option value="Low">Low — general concern</option>
+                <option value="Medium">Medium — needs attention</option>
+                <option value="High">High — urgent concern</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="req-details">Describe the concern *</label>
+              <textarea id="req-details" name="details" rows="5" maxlength="2000"
+                required placeholder="What happened? Where in your area did it happen?"></textarea>
+              <small class="field-hint">
+                <span id="details-count">0</span>/2000 characters. Do not include passwords,
+                government ID numbers, or other sensitive information.
+              </small>
+            </div>
+            <div class="field full">
+              <label class="check-label">
+                <input id="req-consent" name="consent" type="checkbox" required>
+                I understand this is a browser-only demo and agree to store this request on this device.
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-light" type="reset">Clear form</button>
+            <button class="btn btn-primary" type="submit">Submit request →</button>
+          </div>
+          <p id="request-form-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="view-track" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">REQUEST STATUS</span>
+          <h1>Track your request</h1>
+          <p>Use the reference number shown after submitting your request.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">⌕</span>
+      </div>
+      <div class="container narrow section">
+        <form id="track-form" class="panel track-panel">
+          <label for="track-id">Request reference number</label>
+          <div class="track-search">
+            <input id="track-id" name="requestId" type="text" maxlength="30"
+              required placeholder="e.g. BRG-0001">
+            <button class="btn btn-primary" type="submit">Track</button>
+          </div>
+          <p class="field-hint">Reference numbers are not case-sensitive.</p>
+        </form>
+        <div id="track-result" class="track-result" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="view-services" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">COMMUNITY SUPPORT</span>
+          <h1>Barangay services</h1>
+          <p>Browse common concerns you can record through this demo.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">▦</span>
+      </div>
+      <div class="container section">
+        <div class="card-grid three">
+          <article class="feature-card">
+            <span class="feature-icon teal-icon" aria-hidden="true">♻</span>
+            <h3>Waste collection</h3>
+            <p>Report missed collection, overflowing bins, or waste concerns in your area.</p>
+            <button class="text-link" type="button" data-category="Garbage Collection" data-view="help-request">Report a concern →</button>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon blue-icon" aria-hidden="true">☂</span>
+            <h3>Flooding and drainage</h3>
+            <p>Record blocked drainage, standing water, or local flooding concerns.</p>
+            <button class="text-link" type="button" data-category="Flooding / Drainage" data-view="help-request">Report a concern →</button>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon gold-icon" aria-hidden="true">☼</span>
+            <h3>Streetlights</h3>
+            <p>Report a broken streetlight or a dark public area.</p>
+            <button class="text-link" type="button" data-category="Broken Streetlight" data-view="help-request">Report a concern →</button>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon blue-icon" aria-hidden="true">✚</span>
+            <h3>Health services</h3>
+            <p>Record a general health-service inquiry or community concern.</p>
+            <button class="text-link" type="button" data-category="Health Services" data-view="help-request">Report a concern →</button>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon teal-icon" aria-hidden="true">⌂</span>
+            <h3>Public facilities</h3>
+            <p>Record a concern about local roads or public facilities.</p>
+            <button class="text-link" type="button" data-category="Road / Public Facility" data-view="help-request">Report a concern →</button>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon gold-icon" aria-hidden="true">☷</span>
+            <h3>Other concerns</h3>
+            <p>Have another community concern? Submit a clear description.</p>
+            <button class="text-link" type="button" data-category="Other" data-view="help-request">Report a concern →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-announcements" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">COMMUNITY UPDATES</span>
+          <h1>Announcements</h1>
+          <p>Important information for residents.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">▤</span>
+      </div>
+      <div class="container section">
+        <div id="announcements-list" class="announcement-list"></div>
+        <div class="notice notice-warning">
+          <strong>Please verify important information.</strong>
+          <p>Sample announcements are not official notices. Confirm schedules and emergency instructions with your barangay office.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-contacts" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">GET IN TOUCH</span>
+          <h1>Community contacts</h1>
+          <p>Use verified local contact details for real assistance.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">☎</span>
+      </div>
+      <div class="container section">
+        <div class="notice notice-warning">
+          <strong>Sample contact directory</strong>
+          <p>These entries are placeholders. Replace them with verified local contact details before using this website beyond a demo.</p>
+        </div>
+        <div class="card-grid three">
+          <article class="feature-card">
+            <span class="feature-icon teal-icon" aria-hidden="true">⌂</span>
+            <h3>Barangay Hall</h3>
+            <p>For general inquiries, community concerns, and service information.</p>
+            <span class="contact-placeholder">Add verified phone number</span>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon blue-icon" aria-hidden="true">✚</span>
+            <h3>Barangay Health Center</h3>
+            <p>For routine health-service inquiries and clinic schedules.</p>
+            <span class="contact-placeholder">Add verified contact details</span>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon gold-icon" aria-hidden="true">⚑</span>
+            <h3>Emergency assistance</h3>
+            <p>For immediate danger, use the verified official emergency channel for your area.</p>
+            <span class="contact-placeholder">Verify local emergency number</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-resources" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">HELPFUL INFORMATION</span>
+          <h1>Resident resources</h1>
+          <p>Simple reminders for submitting and following up on concerns.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">▧</span>
+      </div>
+      <div class="container narrow section">
+        <article class="panel resource-panel">
+          <h2>Before you submit</h2>
+          <ul class="check-list">
+            <li>Choose the closest category.</li>
+            <li>Provide your purok or general area, not an exact home address.</li>
+            <li>Explain the issue clearly and respectfully.</li>
+            <li>Select urgency based on the impact of the concern.</li>
+            <li>Keep the reference number so you can track the request.</li>
+          </ul>
+          <h2>Understand request statuses</h2>
+          <div class="status-guide">
+            <p><span class="status-pill status-pending">Pending</span> The request has been recorded.</p>
+            <p><span class="status-pill status-progress">In Progress</span> The request is being reviewed or handled.</p>
+            <p><span class="status-pill status-resolved">Resolved</span> The request has been marked complete.</p>
+            <p><span class="status-pill status-rejected">Rejected</span> The request was declined in this demo.</p>
+          </div>
+          <h2>Protect your information</h2>
+          <p>Do not submit passwords, financial details, government ID numbers, or sensitive personal information. This demo does not have a secure server or official case-management system.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-auth" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">DEMO ACCESS ONLY</span>
+          <h1>Demo login</h1>
+          <p>Try the interface using local browser-only demo accounts.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">♙</span>
+      </div>
+
+      <div class="container narrow section">
+        <div class="notice notice-warning">
+          <strong>Demo-only authentication</strong>
+          <p>Accounts are stored in this browser. This is not secure authentication and must not be used for real resident records.</p>
+        </div>
+
+        <div class="auth-tabs" role="tablist" aria-label="Choose account type">
+          <button id="tab-resident" class="auth-tab active" type="button"
+            role="tab" aria-selected="true" aria-controls="resident-login-form">Resident login</button>
+          <button id="tab-admin" class="auth-tab" type="button"
+            role="tab" aria-selected="false" aria-controls="admin-login-form">Admin demo</button>
+          <button id="tab-register" class="auth-tab" type="button"
+            role="tab" aria-selected="false" aria-controls="register-form">Register</button>
+        </div>
+
+        <form id="resident-login-form" class="panel form-panel auth-form">
+          <div class="panel-heading">
+            <h2>Resident login</h2>
+            <p>Sign in with a resident demo account registered in this browser.</p>
+          </div>
+          <div class="field">
+            <label for="resident-login-email">Email</label>
+            <input id="resident-login-email" type="email" required autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="resident-login-password">Password</label>
+            <input id="resident-login-password" type="password" required autocomplete="current-password">
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Log in as resident</button>
+          <p id="resident-login-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <form id="admin-login-form" class="panel form-panel auth-form hidden">
+          <div class="panel-heading">
+            <h2>Admin demo session</h2>
+            <p>This demo does not verify admin credentials.</p>
+          </div>
+          <div class="field">
+            <label for="admin-login-email">Admin email</label>
+            <input id="admin-login-email" type="email" autocomplete="username"
+              placeholder="admin@example.test">
+          </div>
+          <div class="field">
+            <label for="admin-login-password">Password</label>
+            <input id="admin-login-password" type="password" autocomplete="current-password"
+              placeholder="Demo only">
+          </div>
+          <button class="btn btn-admin btn-block" type="submit">Start admin demo session</button>
+          <p id="admin-login-message" class="form-message" role="status" aria-live="polite"></p>
+          <p class="field-hint">Demo access only; this does not provide real authentication.</p>
+        </form>
+
+        <form id="register-form" class="panel form-panel auth-form hidden">
+          <div class="panel-heading">
+            <h2>Register resident demo account</h2>
+            <p>Create a browser-only resident account.</p>
+          </div>
+          <div class="field">
+            <label for="register-name">Name</label>
+            <input id="register-name" type="text" required maxlength="100" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="register-email">Email</label>
+            <input id="register-email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="register-password">Password (at least 8 characters)</label>
+            <input id="register-password" type="password" required minlength="8" autocomplete="new-password">
+          </div>
+          <div class="field">
+            <label for="register-confirm">Confirm password</label>
+            <input id="register-confirm" type="password" required minlength="8" autocomplete="new-password">
+          </div>
+          <div class="field">
+            <label class="check-label">
+              <input id="register-consent" type="checkbox" required>
+              I understand this is a demo account stored in this browser.
+            </label>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Register demo account</button>
+          <p id="register-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <div id="session-panel" class="panel session-panel hidden">
+          <h2>Demo session</h2>
+          <p id="session-info"></p>
+          <div class="hero-actions">
+            <button id="session-admin-btn" class="btn btn-primary hidden" type="button" data-view="admin">Open Admin Dashboard</button>
+            <button id="logout-btn" class="btn btn-light" type="button">Log out</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-admin" class="page-view hidden">
+      <div class="page-banner">
+        <div>
+          <span class="eyebrow">DEMO MANAGEMENT</span>
+          <h1>Admin dashboard</h1>
+          <p>Review demo requests and update their status.</p>
+        </div>
+        <span class="banner-icon" aria-hidden="true">▦</span>
+      </div>
+      <div class="container section">
+        <div class="notice notice-warning">
+          <strong>Demo administration only</strong>
+          <p>Anyone using this browser can open this page. Status changes are local demo data, not official case updates.</p>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-label">Total requests</span><strong id="stat-total">0</strong><span class="stat-foot">All recorded requests</span></article>
+          <article class="stat-card"><span class="stat-label">Pending</span><strong id="stat-pending">0</strong><span class="stat-foot">Awaiting review</span></article>
+          <article class="stat-card"><span class="stat-label">In progress</span><strong id="stat-progress">0</strong><span class="stat-foot">Being handled</span></article>
+          <article class="stat-card"><span class="stat-label">Resolved</span><strong id="stat-resolved">0</strong><span class="stat-foot">Marked complete</span></article>
+        </div>
+
+        <div class="panel admin-panel">
+          <div class="panel-heading admin-heading">
+            <div><h2>Resident requests</h2><p>Search and combine filters to find requests.</p></div>
+            <button id="refresh-admin" class="btn btn-light" type="button">↻ Refresh</button>
+          </div>
+          <div class="filters">
+            <div class="field filter-search">
+              <label for="admin-search">Search requests</label>
+              <input id="admin-search" type="search" placeholder="ID, category, area, or description">
+            </div>
+            <div class="field">
+              <label for="admin-filter">Status</label>
+              <select id="admin-filter">
+                <option value="all">All statuses</option>
+                <option>Pending</option><option>In Progress</option>
+                <option>Resolved</option><option>Rejected</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="urgency-filter">Urgency</label>
+              <select id="urgency-filter">
+                <option value="all">All urgency levels</option>
+                <option>High</option><option>Medium</option><option>Low</option>
+              </select>
+            </div>
+            <button id="clear-filters" class="btn btn-light filter-clear" type="button">Clear filters</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Reference / Date</th><th>Concern</th><th>Area</th><th>Urgency</th><th>Status</th><th>Update status</th></tr>
+              </thead>
+              <tbody id="admin-table-body"></tbody>
+            </table>
+          </div>
+          <p id="admin-results-count" class="field-hint"></p>
+          <div id="admin-empty" class="empty-state hidden">
+            <span aria-hidden="true">▤</span><h3>No requests found</h3>
+            <p>Try changing the search term or filters.</p>
+          </div>
+          <div class="admin-footer">
+            <button id="export-data" class="btn btn-primary" type="button">Export JSON backup</button>
+            <button id="clear-demo-data" class="btn btn-danger-outline" type="button">Clear all demo requests</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="#home" data-view="home">
+        <!-- Keep your existing logo image unchanged -->
+        <img src="./barangay-hall-logo.png" alt="Barangay Help Hub logo" class="logo">
+        <span class="brand-copy">
+          <strong>Barangay Help Hub</strong>
+          <small>Community • Service • Support</small>
+        </span>
+      </a>
+      <p>Built as an offline-first demonstration project.</p>
+      <p class="footer-small">Not an official government website. Verify local information before relying on it.</p>
+    </div>
+  </footer>
+
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
